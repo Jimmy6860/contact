@@ -18,7 +18,6 @@ export class ViewContactPage implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.contactService.getContactDataById(id).subscribe((data) => {
       this.contactDetails = data;
-      console.log(data);
     });
   }
 }

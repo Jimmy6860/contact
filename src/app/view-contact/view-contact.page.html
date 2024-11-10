@@ -1,13 +1,48 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>view-contact</ion-title>
+  <ion-toolbar class="contact-image-details">
+    <ion-img
+      *ngIf="contactDetails?.picture"
+      [src]="contactDetails?.picture"
+      alt="User picture"
+    ></ion-img>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">view-contact</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" *ngIf="contactDetails">
+  <ion-item>
+    <ion-title size="large"
+      >{{contactDetails.title}} {{contactDetails.firstName}}
+      {{contactDetails.lastName}}</ion-title
+    >
+  </ion-item>
+  <ion-item>
+    <ion-title size="large" *ngIf="contactDetails.gender">
+      Gender: {{contactDetails.gender}}
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-title size="large" *ngIf="contactDetails.email">
+      Email: {{contactDetails.email}}
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-title size="large" *ngIf="contactDetails.dateOfBirth">
+      Birthday: {{contactDetails.dateOfBirth}}
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-title size="large" *ngIf="contactDetails.phone">
+      Phone: {{contactDetails.phone}}
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-title size="large" *ngIf="contactDetails.location">
+      Address: {{contactDetails.location.street}} {{contactDetails.location.city}} {{contactDetails.location.state}} {{contactDetails.location.country}}
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-title size="large" *ngIf="contactDetails.registerDate">
+      Register Date: {{contactDetails.registerDate}}
+    </ion-title>
+  </ion-item>
 </ion-content>
