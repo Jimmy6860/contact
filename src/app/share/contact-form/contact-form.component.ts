@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { catchError, map, of } from 'rxjs';
 import { ContactsService } from 'src/app/services/contacts.service';
-import { CreateContactData, UserFull } from 'src/models/list';
+import { CreateUpdateContactData, UserFull } from 'src/models/list';
 
 @Component({
   selector: 'app-contact-form',
@@ -57,16 +57,22 @@ export class ContactFormComponent implements OnInit {
   }
 
   saveFunction = () => {
-    const contactData = this.userForm.value as CreateContactData;
-    this.contactService.createContactData(contactData).pipe(
-      map((response: any) => console.log(response)),
-      catchError((error: any) => {
-        console.log(error);
-        return of(null);
-      })
-    );
-    console.log('userForm');
-    console.log(this.userForm);
+    const contactData = this.userForm.value as CreateUpdateContactData;
+    if(this.contactDetails) {
+      this.contactService.updateContactData(this.contactDetails.id, contactData)
+      this.closeModal()
+    } else {
+      this.contactService.createContactData(contactData).pipe(
+        map((response: any) => console.log(response)),
+        catchError((error: any) => {
+          console.log(error);
+          return of(null);
+        })
+      );
+      console.log('userForm');
+      console.log(this.userForm);
+    }
+
   };
 
   closeModal() {

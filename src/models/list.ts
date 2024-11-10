@@ -27,7 +27,7 @@ export interface UserFull {
   location: Location;
 }
 
-export interface CreateContactData {
+export interface CreateUpdateContactData {
   title?: string;
   firstName: string;
   lastName: string;
@@ -39,7 +39,6 @@ export interface CreateContactData {
   phone?: string;
   location?: Location;
 }
-
 export interface Location {
   street: string;
   city: string;
