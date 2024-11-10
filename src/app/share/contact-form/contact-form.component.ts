@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 import { catchError, map, of } from 'rxjs';
 import { ContactsService } from 'src/app/services/contacts.service';
 import { CreateContactData } from 'src/models/list';
@@ -26,7 +27,7 @@ export class ContactFormComponent implements OnInit {
     picture: new FormControl(''),
   });
 
-  constructor(public contactService: ContactsService) {}
+  constructor(public contactService: ContactsService, public modalController: ModalController) {}
 
   saveFunction = () => {
     const contactData = this.userForm.value as CreateContactData;
@@ -37,10 +38,13 @@ export class ContactFormComponent implements OnInit {
         return of(null)
       })
     );
-
     console.log('userForm');
     console.log(this.userForm);
   };
+
+  closeModal() {
+    this.modalController.dismiss();
+  }
 
   ngOnInit() {}
 }

@@ -1,10 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent } from '@ionic/angular';
-import { MessageComponent } from '../message/message.component';
-
+import { ModalController, RefresherCustomEvent } from '@ionic/angular';
 import { DataService, Message } from '../services/data.service';
 import { ContactsService } from '../services/contacts.service';
 import { UserPreview } from 'src/models/list';
+import { ContactFormComponent } from '../share/contact-form/contact-form.component';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +13,14 @@ import { UserPreview } from 'src/models/list';
 export class HomePage {
   private data = inject(DataService);
   contacts: UserPreview[] = [];
-  constructor(public contactService: ContactsService) {}
+  constructor(public contactService: ContactsService, public modalController: ModalController) {}
+
+  async openContactForm() {
+    const modal = await this.modalController.create({
+      component: ContactFormComponent,
+    });
+    await modal.present();
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
