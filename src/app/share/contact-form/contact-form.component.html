@@ -1,3 +1,48 @@
-<p>
-  contact-form works!
-</p>
+<form [formGroup]="userForm">
+  <ion-list>
+    <ion-radio-group value="mr" formControlName="title">
+      <ion-radio value="mr">mr</ion-radio><br />
+      <ion-radio value="ms">ms</ion-radio><br />
+      <ion-radio value="mrs">mrs</ion-radio><br />
+      <ion-radio value="miss">miss</ion-radio><br />
+      <ion-radio value="dr">dr</ion-radio>
+    </ion-radio-group>
+
+    <ion-item>
+      <ion-input label="First name" placeholder="Enter first name" formControlName="firstName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Last name" placeholder="Enter last name" formControlName="lastName"></ion-input>
+    </ion-item>
+
+    <ion-radio-group value="male" formControlName="gender">
+      <ion-radio value="male">male</ion-radio><br />
+      <ion-radio value="female">female</ion-radio><br />
+    </ion-radio-group>
+
+    <ion-item>
+      <ion-input label="Email" type="email" placeholder="email@domain.com" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Phone number" type="tel" formControlName="phoneNumber" placeholder="888-888-8888"></ion-input>
+    </ion-item>
+
+    <div formGroupName="location">
+      <ion-item>
+        <ion-input label="Street" formControlName="street"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="City" formControlName="city"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Country" formControlName="country"></ion-input>
+      </ion-item>
+    </div>
+
+    <ion-item>
+      <ion-input label="Picture" formControlName="picture"></ion-input>
+    </ion-item>
+  </ion-list>
+</form>
