@@ -3,6 +3,7 @@ import { RefresherCustomEvent } from '@ionic/angular';
 import { MessageComponent } from '../message/message.component';
 
 import { DataService, Message } from '../services/data.service';
+import { ContactsService } from '../services/contacts.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { DataService, Message } from '../services/data.service';
 })
 export class HomePage {
   private data = inject(DataService);
-  constructor() {}
+  constructor(public contactService: ContactsService) {}
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -21,5 +22,13 @@ export class HomePage {
 
   getMessages(): Message[] {
     return this.data.getMessages();
+  }
+
+  ngOnInit() {
+    this.contactService.getContactsData().subscribe(
+      data => {
+        console.log(data.data)
+      }
+    )
   }
 }
