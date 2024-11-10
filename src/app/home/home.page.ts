@@ -4,6 +4,7 @@ import { MessageComponent } from '../message/message.component';
 
 import { DataService, Message } from '../services/data.service';
 import { ContactsService } from '../services/contacts.service';
+import { UserPreview } from 'src/models/list';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { ContactsService } from '../services/contacts.service';
 })
 export class HomePage {
   private data = inject(DataService);
+  contacts: UserPreview[] = [];
   constructor(public contactService: ContactsService) {}
 
   refresh(ev: any) {
@@ -27,6 +29,7 @@ export class HomePage {
   ngOnInit() {
     this.contactService.getContactsData().subscribe(
       data => {
+        this.contacts = data.data;
         console.log(data.data)
       }
     )

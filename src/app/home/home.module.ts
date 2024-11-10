@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
+import { ContactCardModule } from '../share/contact-card/contact-card.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { MessageComponentModule } from '../message/message.module';
     FormsModule,
     IonicModule,
     MessageComponentModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    ContactCardModule
   ],
   declarations: [HomePage]
 })

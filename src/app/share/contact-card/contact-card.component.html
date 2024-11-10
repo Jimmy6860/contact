@@ -1,0 +1,17 @@
+<ion-item
+  *ngIf="contact"
+  [routerLink]="'/contact/' + contact.id"
+  [detail]="false"
+>
+  <ion-label class="ion-text-wrap">
+    <ion-img
+      class="contact-image"
+      [src]="contact.picture"
+      alt="User picture"
+    ></ion-img>
+    <h3>
+      {{ contact.title }}
+    </h3>
+    <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
+  </ion-label>
+</ion-item>

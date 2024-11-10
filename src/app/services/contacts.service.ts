@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { List } from 'src/models/list';
+import { List, UserFull } from 'src/models/list';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -19,6 +19,12 @@ export class ContactsService {
 
   getContactsData() {
     return this.httpClient.get<List>(environment.userUrl, {headers}).pipe(
+      map((data: List) => data)
+    )
+  }
+
+  getContactDataById(id: UserFull) {
+    return this.httpClient.get<List>(`${environment.userUrl}/${id}`, {headers}).pipe(
       map((data: List) => data)
     )
   }
