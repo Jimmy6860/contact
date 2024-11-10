@@ -23,9 +23,9 @@ export class ContactsService {
     )
   }
 
-  getContactDataById(id: UserFull) {
-    return this.httpClient.get<List>(`${environment.userUrl}/${id}`, {headers}).pipe(
-      map((data: List) => data)
+  getContactDataById(id: string) {
+    return this.httpClient.get<UserFull>(`${environment.userUrl}/${id}`, {headers}).pipe(
+      map((data: UserFull) => data)
     )
   }
 }

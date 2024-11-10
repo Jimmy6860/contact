@@ -30,7 +30,6 @@ export class HomePage {
     this.contactService.getContactsData().subscribe(
       data => {
         this.contacts = data.data;
-        console.log(data.data)
       }
     )
   }
