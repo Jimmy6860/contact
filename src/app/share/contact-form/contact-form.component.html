@@ -1,11 +1,11 @@
 <ion-content>
   <form [formGroup]="userForm" class="form-layout">
     <ion-list>
-      <ion-radio-group value="mr" formControlName="title">
-        <ion-radio value="mr">mr</ion-radio><br />
-        <ion-radio value="ms">ms</ion-radio><br />
-        <ion-radio value="mrs">mrs</ion-radio><br />
-        <ion-radio value="miss">miss</ion-radio><br />
+      <ion-radio-group value="mr" formControlName="title" class="radio-group">
+        <ion-radio value="mr">mr</ion-radio>
+        <ion-radio value="ms">ms</ion-radio>
+        <ion-radio value="mrs">mrs</ion-radio>
+        <ion-radio value="miss">miss</ion-radio>
         <ion-radio value="dr">dr</ion-radio>
       </ion-radio-group>
 
@@ -25,9 +25,9 @@
         ></ion-input>
       </ion-item>
 
-      <ion-radio-group value="male" formControlName="gender">
-        <ion-radio value="male">male</ion-radio><br />
-        <ion-radio value="female">female</ion-radio><br />
+      <ion-radio-group value="male" formControlName="gender" class="radio-group">
+        <ion-radio value="male">male</ion-radio>
+        <ion-radio value="female">female</ion-radio>
       </ion-radio-group>
 
       <ion-item>
@@ -67,7 +67,9 @@
         <ion-input label="Picture" formControlName="picture"></ion-input>
       </ion-item>
     </ion-list>
-    <ion-button (click)="closeModal()">Cancel</ion-button>
-    <ion-button (click)="saveFunction()">Save</ion-button>
+    <div class="align-button">
+      <ion-button (click)="closeModal()">Cancel</ion-button>
+      <ion-button (click)="saveFunction()">Save</ion-button>
+    </div>
   </form>
 </ion-content>
