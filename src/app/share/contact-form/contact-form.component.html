@@ -46,7 +46,7 @@
       <ion-item>
         <ion-input
           label="Phone number"
-          formControlName="phoneNumber"
+          formControlName="phone"
           placeholder="888-888-8888"
         ></ion-input>
       </ion-item>
@@ -67,6 +67,7 @@
         <ion-input label="Picture" formControlName="picture"></ion-input>
       </ion-item>
     </ion-list>
+    <ion-button (click)="closeModal()">Cancel</ion-button>
     <ion-button (click)="saveFunction()">Save</ion-button>
   </form>
 </ion-content>

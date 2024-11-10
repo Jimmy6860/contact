@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateContactData, List, UserFull } from 'src/models/list';
 
@@ -31,7 +31,11 @@ export class ContactsService {
 
   createContactData(contactData: CreateContactData) {
     return this.httpClient.post<UserFull>(`${environment.userUrl}/create`, contactData, {headers}).pipe(
-      map(data => data)
+      map(data => data),
+      catchError((error: any) => {
+        console.log(error)
+        return of(null)
+      })
     )
   }
 }

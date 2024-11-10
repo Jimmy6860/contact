@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { catchError, map, of } from 'rxjs';
 import { ContactsService } from 'src/app/services/contacts.service';
-import { CreateContactData } from 'src/models/list';
+import { CreateContactData, UserFull } from 'src/models/list';
 
 @Component({
   selector: 'app-contact-form',
@@ -11,31 +11,58 @@ import { CreateContactData } from 'src/models/list';
   styleUrls: ['./contact-form.component.scss'],
 })
 export class ContactFormComponent implements OnInit {
-  userForm = new FormGroup({
-    title: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    gender: new FormControl(''),
-    email: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    dateOfBirth: new FormControl(''),
-    location: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      country: new FormControl(''),
-    }),
-    picture: new FormControl(''),
-  });
+  @Input() contactDetails: UserFull | undefined;
 
-  constructor(public contactService: ContactsService, public modalController: ModalController) {}
+  userForm: FormGroup;
+
+  constructor(
+    public contactService: ContactsService,
+    public modalController: ModalController
+  ) {
+    this.userForm = new FormGroup({
+      title: new FormControl(''),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      gender: new FormControl(''),
+      email: new FormControl(''),
+      phone: new FormControl(''),
+      dateOfBirth: new FormControl(''),
+      location: new FormGroup({
+        street: new FormControl(''),
+        city: new FormControl(''),
+        country: new FormControl(''),
+      }),
+      picture: new FormControl(''),
+    });
+  }
+
+  private initializeForm() {
+    if (this.contactDetails) {
+      this.userForm.setValue({
+        title: this.contactDetails.title ?? '',
+        firstName: this.contactDetails.firstName ?? '',
+        lastName: this.contactDetails.lastName ?? '',
+        gender: this.contactDetails.gender ?? '',
+        email: this.contactDetails.email ?? '',
+        phone: this.contactDetails.phone ?? '',
+        dateOfBirth: this.contactDetails.dateOfBirth ?? '',
+        location: {
+          street: this.contactDetails.location?.street ?? '',
+          city: this.contactDetails.location?.city ?? '',
+          country: this.contactDetails.location?.country ?? '',
+        },
+        picture: this.contactDetails.picture ?? '',
+      });
+    }
+  }
 
   saveFunction = () => {
     const contactData = this.userForm.value as CreateContactData;
     this.contactService.createContactData(contactData).pipe(
       map((response: any) => console.log(response)),
       catchError((error: any) => {
-        console.log(error)
-        return of(null)
+        console.log(error);
+        return of(null);
       })
     );
     console.log('userForm');
@@ -44,7 +71,12 @@ export class ContactFormComponent implements OnInit {
 
   closeModal() {
     this.modalController.dismiss();
+    console.log(this.userForm.value.firstName);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.contactDetails) {
+      this.initializeForm();
+    }
+  }
 }
