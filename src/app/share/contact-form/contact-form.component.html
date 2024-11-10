@@ -22,11 +22,15 @@
     </ion-radio-group>
 
     <ion-item>
+      <ion-input label="Birthday" formControlName="dateOfBirth"></ion-input>
+    </ion-item>
+
+    <ion-item>
       <ion-input label="Email" type="email" placeholder="email@domain.com" formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input label="Phone number" type="tel" formControlName="phoneNumber" placeholder="888-888-8888"></ion-input>
+      <ion-input label="Phone number" formControlName="phoneNumber" placeholder="888-888-8888"></ion-input>
     </ion-item>
 
     <div formGroupName="location">
@@ -46,3 +50,5 @@
     </ion-item>
   </ion-list>
 </form>
+
+<ion-button (click)="saveFunction()">Save</ion-button>
