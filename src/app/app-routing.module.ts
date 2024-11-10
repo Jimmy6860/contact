@@ -15,6 +15,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'contact/:id',
+    loadChildren: () => import('./view-contact/view-contact.module').then( m => m.ViewContactPageModule)
+  },
 ];
 
 @NgModule({
